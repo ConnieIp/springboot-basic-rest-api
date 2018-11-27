@@ -45,4 +45,12 @@ public class EmployeeService {
         return null;
     }
 
+    public Employee getEmployee(int id) {
+        for(Employee employee:this.employees){
+            if(employee.getId()==id){
+                return employee;
+            }
+        }
+        return null;
+    }
 }

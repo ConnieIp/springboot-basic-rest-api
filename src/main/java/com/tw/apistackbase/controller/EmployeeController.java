@@ -25,22 +25,28 @@ public class EmployeeController {
         return employees;
     }
 
+    @GetMapping(path="/{id}", produces = {"application/json"})
+    public Employee getEmployee(@PathVariable int id) {
+        Employee employee=employeeService.getEmployee(id);
+        return employee;
+    }
+
     @PostMapping(produces = {"application/json"})
-    public ResponseEntity<Employee> add(@RequestBody Employee employee) {
+    public Employee add(@RequestBody Employee employee) {
         employeeService.addEmployee(employee);
-        return ResponseEntity.ok(employee);
+        return employee;
     }
 
     @DeleteMapping(path="/{id}", produces = {"application/json"})
-    public ResponseEntity<Employee> delete(@PathVariable int id) {
+    public Employee delete(@PathVariable int id) {
         Employee employee=employeeService.deleteEmployee(id);
-        return ResponseEntity.ok(employee);
+        return employee;
     }
 
     @PutMapping(path="/{id}", produces = {"application/json"})
-    public ResponseEntity<Employee> put(@PathVariable int id,@RequestBody Employee employee) {
+    public Employee put(@PathVariable int id,@RequestBody Employee employee) {
         Employee updatedEmployee=employeeService.updateEmployee(id,employee);
-        return ResponseEntity.ok(updatedEmployee);
+        return updatedEmployee;
     }
 
 
