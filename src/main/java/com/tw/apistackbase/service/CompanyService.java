@@ -38,4 +38,15 @@ public class CompanyService {
         }
         return null;
     }
+
+    public Company delete(int id) {
+        for(Company e:this.companies) {
+            if(e.getId()==id){
+                this.companies.remove(e);
+                return e;
+            }
+        }
+        return null;
+    }
+
 }

@@ -43,4 +43,9 @@ public class CompanyController {
         return company;
     }
 
+    @DeleteMapping(path="/{id}", produces = {"application/json"})
+    public Company deleteCompany(@PathVariable int id) {
+        Company company=companyService.delete(id);
+        return company;
+    }
 }
