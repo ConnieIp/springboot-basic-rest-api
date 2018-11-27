@@ -71,4 +71,17 @@ public class EmployeeServiceTest {
         assertEquals(employee2,actual);
 
     }
+
+    @Test
+    public void should_get_employees_with_gender(){
+        Employee employee1=new Employee("emp1", 20,"Male", 8000);
+        Employee employee2=new Employee("emp2", 23,"Female", 9000);
+        employeeService.addEmployee(employee1);
+        employeeService.addEmployee(employee2);
+
+        List<Employee> actual=employeeService.getEmployeeWithGender("Male");
+
+        assertEquals(Arrays.asList(employee1),actual);
+
+    }
 }
