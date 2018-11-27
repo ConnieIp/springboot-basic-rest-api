@@ -15,4 +15,8 @@ public class CompanyService {
     public List<Company> getAll() {
         return this.companies;
     }
+
+    public void add(Company company) {
+        this.companies.add(company);
+    }
 }

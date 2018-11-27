@@ -3,9 +3,7 @@ package com.tw.apistackbase.controller;
 import com.tw.apistackbase.model.Company;
 import com.tw.apistackbase.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,6 +22,12 @@ public class CompanyController {
     public List<Company> getAll() {
         List<Company> employees=companyService.getAll();
         return employees;
+    }
+
+    @PostMapping(produces = {"application/json"})
+    public Company add(@RequestBody Company company) {
+        companyService.add(company);
+        return company;
     }
 
 }
