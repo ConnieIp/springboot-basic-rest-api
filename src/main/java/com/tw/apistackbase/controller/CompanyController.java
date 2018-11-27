@@ -48,4 +48,11 @@ public class CompanyController {
         Company company=companyService.delete(id);
         return company;
     }
+
+    @PutMapping(path="/{id}", produces = {"application/json"})
+    public Company put(@PathVariable int id,@RequestBody Company company) {
+        Company updatedCompany=companyService.update(id,company);
+        return updatedCompany;
+    }
+
 }

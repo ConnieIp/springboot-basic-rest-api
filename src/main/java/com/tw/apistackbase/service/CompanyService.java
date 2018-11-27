@@ -49,4 +49,15 @@ public class CompanyService {
         return null;
     }
 
+    public Company update(int id, Company company) {
+        for(Company c:this.companies) {
+            if(c.getId()==id){
+                c.setCompanyName(company.getCompanyName());
+                c.setEmployeesNumber(company.getEmployeesNumber());
+                c.setEmployees(company.getEmployees());
+                return c;
+            }
+        }
+        return null;
+    }
 }
