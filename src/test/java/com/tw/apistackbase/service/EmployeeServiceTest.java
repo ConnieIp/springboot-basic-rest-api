@@ -58,4 +58,17 @@ public class EmployeeServiceTest {
         assertEquals(9500,actual.getSalary());
 
     }
+
+    @Test
+    public void should_get_a_employee(){
+        Employee employee1=new Employee("emp1", 20,"Male", 8000);
+        Employee employee2=new Employee("emp2", 23,"Female", 9000);
+        employeeService.addEmployee(employee1);
+        employeeService.addEmployee(employee2);
+
+        Employee actual=employeeService.getEmployee(2);
+
+        assertEquals(employee2,actual);
+
+    }
 }
