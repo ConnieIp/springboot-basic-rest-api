@@ -19,4 +19,13 @@ public class CompanyService {
     public void add(Company company) {
         this.companies.add(company);
     }
+
+    public Company getCompany(int id) {
+        for(Company company:this.companies){
+            if(company.getId()==id){
+                return company;
+            }
+        }
+        return null;
+    }
 }

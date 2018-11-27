@@ -20,14 +20,21 @@ public class CompanyController {
 
     @GetMapping(produces = {"application/json"})
     public List<Company> getAll() {
-        List<Company> employees=companyService.getAll();
-        return employees;
+        List<Company> companies=companyService.getAll();
+        return companies;
+    }
+
+    @GetMapping(path="/{id}", produces = {"application/json"})
+    public Company getCompany(@PathVariable int id) {
+        Company company=companyService.getCompany(id);
+        return company;
     }
 
     @PostMapping(produces = {"application/json"})
-    public Company add(@RequestBody Company company) {
+    public Company addCompany(@RequestBody Company company) {
         companyService.add(company);
         return company;
     }
+
 
 }
