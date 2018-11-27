@@ -53,4 +53,14 @@ public class EmployeeService {
         }
         return null;
     }
+
+    public List<Employee> getEmployeeWithGender(String gender) {
+        List<Employee> result=new ArrayList<>();
+        for(Employee employee:this.employees){
+            if(employee.getGender().equals(gender)){
+                result.add(employee);
+            }
+        }
+        return result;
+    }
 }

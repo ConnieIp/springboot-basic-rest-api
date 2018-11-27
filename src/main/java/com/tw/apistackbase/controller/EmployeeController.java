@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -20,8 +21,13 @@ public class EmployeeController {
 
 
     @GetMapping(produces = {"application/json"})
-    public List<Employee> getAll() {
-        List<Employee> employees=employeeService.getAll();
+    public List<Employee> getAll(@RequestParam(required = false) String gender) {
+        List<Employee> employees=new ArrayList<>();
+        if(gender==null){
+            employees=employeeService.getAll();
+        }else{
+            employees=employeeService.getEmployeeWithGender(gender);
+        }
         return employees;
     }
 
@@ -30,6 +36,12 @@ public class EmployeeController {
         Employee employee=employeeService.getEmployee(id);
         return employee;
     }
+
+//    @GetMapping(produces = {"application/json"})
+//    public List<Employee> getEmployeeWithGender() {
+//        List<Employee> employees=employeeService.getEmployeeWithGender(gender);
+//        return employees;
+//    }
 
     @PostMapping(produces = {"application/json"})
     public Employee add(@RequestBody Employee employee) {
