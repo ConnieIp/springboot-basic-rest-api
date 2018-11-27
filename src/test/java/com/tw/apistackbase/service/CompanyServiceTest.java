@@ -82,4 +82,24 @@ public class CompanyServiceTest {
 
         assertEquals(company1,actual);
     }
+
+    @Test
+    public void should_update_a_company (){
+        List<Employee> employees1=Arrays.asList(
+                new Employee("emp1",20,"Male",8000),
+                new Employee("emp2",21,"Female",7000));
+        Company company1=new Company("company1",2,employees1);
+        Company company2=new Company("company2",1,Arrays.asList(
+                new Employee("emp3",21,"Male",9000)));
+        companyService.add(company1);
+        companyService.add(company2);
+
+        Company updatedCompany = new Company("company1update",2,employees1);
+        Company actual=companyService.update(1,updatedCompany);
+
+        assertEquals(1,actual.getId());
+        assertEquals("company1update",actual.getCompanyName());
+
+    }
+
 }
