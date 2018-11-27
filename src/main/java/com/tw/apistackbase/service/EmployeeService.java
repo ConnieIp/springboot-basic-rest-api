@@ -63,4 +63,13 @@ public class EmployeeService {
         }
         return result;
     }
+
+    public List<Employee> getPage(int page, int pageSize) {
+        List<Employee> result=new ArrayList<>();
+        int maxsize=((page*pageSize)<this.employees.size())?(page*pageSize):this.employees.size();
+        for(int i=(page-1)*pageSize;i<maxsize;i++){
+            result.add(this.employees.get(i));
+        }
+        return result;
+    }
 }

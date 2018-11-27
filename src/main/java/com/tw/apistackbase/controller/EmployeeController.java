@@ -21,12 +21,14 @@ public class EmployeeController {
 
 
     @GetMapping(produces = {"application/json"})
-    public List<Employee> getAll(@RequestParam(required = false) String gender) {
+    public List<Employee> getAll(@RequestParam(required = false) String gender,@RequestParam(required = false) String page, @RequestParam(required = false) String pageSize) {
         List<Employee> employees=new ArrayList<>();
-        if(gender==null){
-            employees=employeeService.getAll();
+        if(gender!=null) {
+            employees = employeeService.getEmployeeWithGender(gender);
+        }else if(page!=null && pageSize!=null){
+            employees = employeeService.getPage(Integer.parseInt(page),Integer.parseInt(pageSize));
         }else{
-            employees=employeeService.getEmployeeWithGender(gender);
+            employees=employeeService.getAll();
         }
         return employees;
     }
@@ -36,12 +38,6 @@ public class EmployeeController {
         Employee employee=employeeService.getEmployee(id);
         return employee;
     }
-
-//    @GetMapping(produces = {"application/json"})
-//    public List<Employee> getEmployeeWithGender() {
-//        List<Employee> employees=employeeService.getEmployeeWithGender(gender);
-//        return employees;
-//    }
 
     @PostMapping(produces = {"application/json"})
     public Employee add(@RequestBody Employee employee) {
