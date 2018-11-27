@@ -84,4 +84,22 @@ public class EmployeeServiceTest {
         assertEquals(Arrays.asList(employee1),actual);
 
     }
+
+    @Test
+    public void should_get_employees_in_page(){
+        Employee employee1=new Employee("emp1", 20,"Male", 8000);
+        Employee employee2=new Employee("emp2", 23,"Female", 9000);
+        Employee employee3=new Employee("emp3", 21,"Male", 8000);
+        Employee employee4=new Employee("emp4", 24,"Female", 9000);
+        Employee employee5=new Employee("emp5", 21,"Male", 8000);
+        employeeService.addEmployee(employee1);
+        employeeService.addEmployee(employee2);
+        employeeService.addEmployee(employee3);
+        employeeService.addEmployee(employee4);
+        employeeService.addEmployee(employee5);
+
+        List<Employee> actual=employeeService.getPage(2,2);
+
+        assertEquals(Arrays.asList(employee3,employee4),actual);
+    }
 }
