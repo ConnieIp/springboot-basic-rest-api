@@ -6,6 +6,7 @@ import com.tw.apistackbase.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -34,6 +35,12 @@ public class CompanyController {
     @GetMapping(path="/{id}/employees", produces = {"application/json"})
     public List<Employee> getCompanyEmployees(@PathVariable int id) {
         List<Employee> employees=companyService.getCompanyEmployees(id);
+        return employees;
+    }
+
+    @GetMapping(path="?page={page}&pageSize={pageSize}", produces = {"application/json"})
+    public List<Employee> getPage(@PathVariable int page,@PathVariable int pageSize) {
+        List<Employee> employees=new ArrayList<>();
         return employees;
     }
 
