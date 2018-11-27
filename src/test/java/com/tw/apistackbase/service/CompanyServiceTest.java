@@ -105,4 +105,27 @@ public class CompanyServiceTest {
 
     }
 
+    @Test
+    public void should_get_companies_in_page(){
+        Company company1=new Company("company1",2,Arrays.asList(
+                new Employee("emp1",20,"Male",9000)));
+        Company company2=new Company("company2",1,Arrays.asList(
+                new Employee("emp2",21,"Male",9000)));
+        Company company3=new Company("company1",2,Arrays.asList(
+                new Employee("emp3",22,"Male",9000)));
+        Company company4=new Company("company2",1,Arrays.asList(
+                new Employee("emp4",23,"Male",9000)));
+        Company company5=new Company("company1",2,Arrays.asList(
+                new Employee("emp5",24,"Male",9000)));
+        companyService.add(company1);
+        companyService.add(company2);
+        companyService.add(company3);
+        companyService.add(company4);
+        companyService.add(company5);
+
+        List<Company> actual=companyService.getPage(2,2);
+
+        assertEquals(Arrays.asList(company3,company4),actual);
+    }
+
 }
