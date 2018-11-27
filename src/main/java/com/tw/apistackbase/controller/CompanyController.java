@@ -1,6 +1,7 @@
 package com.tw.apistackbase.controller;
 
 import com.tw.apistackbase.model.Company;
+import com.tw.apistackbase.model.Employee;
 import com.tw.apistackbase.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,11 +31,16 @@ public class CompanyController {
         return company;
     }
 
+    @GetMapping(path="/{id}/employees", produces = {"application/json"})
+    public List<Employee> getCompanyEmployees(@PathVariable int id) {
+        List<Employee> employees=companyService.getCompanyEmployees(id);
+        return employees;
+    }
+
     @PostMapping(produces = {"application/json"})
     public Company addCompany(@RequestBody Company company) {
         companyService.add(company);
         return company;
     }
-
 
 }

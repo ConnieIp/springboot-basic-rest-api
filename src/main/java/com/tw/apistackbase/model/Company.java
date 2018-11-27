@@ -51,4 +51,8 @@ public class Company {
     public void setId(int id) {
         this.id = id;
     }
+
+    public static void setCounter(int counter) {
+        Company.counter = counter;
+    }
 }
