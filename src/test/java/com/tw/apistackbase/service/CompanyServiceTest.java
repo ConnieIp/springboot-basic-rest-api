@@ -19,7 +19,9 @@ public class CompanyServiceTest {
     }
     @Test
     public void should_add_company_and_search_all_companies (){
-        Company company=new Company("company1",2,Arrays.asList(new Employee("emp1",20,"Male",8000)));
+        Company company=new Company("company1",2,Arrays.asList(
+                new Employee("emp1",20,"Male",8000),
+                new Employee("emp2",21,"Female",7000)));
         companyService.add(company);
 
         List<Company> actual=companyService.getAll();
@@ -28,5 +30,20 @@ public class CompanyServiceTest {
         expected.add(company);
 
         assertArrayEquals(expected.toArray(),actual.toArray());
+    }
+
+    @Test
+    public void should_get_a_company (){
+        Company company1=new Company("company1",2,Arrays.asList(
+                new Employee("emp1",20,"Male",8000),
+                new Employee("emp2",21,"Female",7000)));
+        Company company2=new Company("company2",1,Arrays.asList(
+                new Employee("emp3",21,"Male",9000)));
+        companyService.add(company1);
+        companyService.add(company2);
+
+        Company actual=companyService.getCompany(2);
+
+        assertEquals(company2,actual);
     }
 }
