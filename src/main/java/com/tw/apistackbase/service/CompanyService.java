@@ -60,4 +60,13 @@ public class CompanyService {
         }
         return null;
     }
+
+    public List<Company> getPage(int page, int pageSize) {
+        List<Company> result=new ArrayList<>();
+        int maxsize=((page*pageSize)<this.companies.size())?(page*pageSize):this.companies.size();
+        for(int i=(page-1)*pageSize;i<maxsize;i++){
+            result.add(this.companies.get(i));
+        }
+        return result;
+    }
 }

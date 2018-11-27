@@ -21,8 +21,13 @@ public class CompanyController {
     }
 
     @GetMapping(produces = {"application/json"})
-    public List<Company> getAll() {
-        List<Company> companies=companyService.getAll();
+    public List<Company> getAll(@RequestParam(required = false) String page, @RequestParam(required = false) String pageSize) {
+        List<Company> companies=new ArrayList<>();
+        if(page!=null && pageSize!=null){
+            companies=companyService.getPage(Integer.parseInt(page),Integer.parseInt(pageSize));
+        }else{
+            companies=companyService.getAll();
+        }
         return companies;
     }
 
