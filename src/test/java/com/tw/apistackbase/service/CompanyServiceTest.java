@@ -99,6 +99,9 @@ public class CompanyServiceTest {
 
         assertEquals(1,actual.getId());
         assertEquals("company1update",actual.getCompanyName());
+        assertEquals(2,actual.getEmployeesNumber());
+        assertEquals(employees1,actual.getEmployees());
+
 
     }
 
